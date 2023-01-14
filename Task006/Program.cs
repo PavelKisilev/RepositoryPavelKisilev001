@@ -7,3 +7,4 @@
 Console.WriteLine("Ввидете число");
 int x = Convert.ToInt32(Console.ReadLine());
 if (x % 2 == 0) {Console.Write( "Число чётное");}
+else {Console.Write("Число не четное");}
