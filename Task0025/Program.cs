@@ -7,7 +7,7 @@
 int StepenChisla (int A, int B)  
     {
         int x = A;
-        for(int i=0; i<(B-1); i++) {A=A*x;}
+        for(int i=0; i<(B-1; i++) {A=A*x;}
         return A;
     }
 
