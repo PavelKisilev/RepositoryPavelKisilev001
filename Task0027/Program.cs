@@ -3,28 +3,31 @@
 // 82 -> 10
 // 9012 -> 12
 
+
+
 Console.WriteLine("Введите число для подсчета суммы входящих в него цифр");
 int x = Convert.ToInt32(Console.ReadLine());
-
-// 1. Необходимо узнать колличество разрядов в числе. y - счетчик числа разрядов.
 int Sum = 0;
-int y = 0;
-int z = x;
-while ( z != 0)
-    {
-        z=z / 10;
-        y=y+1;
-    }
+int z = 0;
+
+// 1. Необходимо узнать колличество разрядов в числе. 
+int RazryidChisla (int x)
+{
+        for (int i=0; x>0; i++)
+        {x = x / 10; 
+        z=i;}
+        return z;
+}
+
+int razryid = RazryidChisla (x);
 
 // 2.  Зная колличество разрядов можно получить по отдельности каждую цифру числа.
 
-int stepen = y;  // Переменная степень введена для удобства восприятия взамен "y".
-
-while ( stepen >= 0 )
+while ( razryid >= 0 )
     {
-    Sum = Sum + x / Convert.ToInt32(Math.Pow(10, stepen));   // Получаем чифру для сложения из числа.
-    x = x % Convert.ToInt16(Math.Pow(10, stepen));   // Получаем новое число, уже учтённой цифры.
-    stepen = stepen - 1;
+    Sum = Sum + x / Convert.ToInt32(Math.Pow(10, razryid));   // Получаем чифру для сложения из числа.
+    x = x % Convert.ToInt16(Math.Pow(10, razryid));   // Получаем новое число, с уже учтённой цифры.
+    razryid = razryid - 1;
     }
 
 Console.WriteLine($"Сумма цифр числа равна {Sum}");
