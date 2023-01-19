@@ -1,55 +1,50 @@
-﻿// Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-// b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5
+﻿// Задача 50. Напишите программу, которая на вход принимает значение элемента в двумерном массиве, и возвращает позицию этого элемента или же указание, что такого элемента нет.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// 17 -> такого числа в массиве нет
 
-double[] InputMean = new double[4]; // Создаётся массив для заполнения входящими значениями двух прямых.
-{ Console.WriteLine($"Введите значение чисел b1, k1, b2 и k2 поочерёдно: "); }
-    for (int i = 0; i < InputMean.Length; i++)
-    {
-        InputMean[i] = Convert.ToDouble(Console.ReadLine());
-    }
-double x = 0;
-double y = 0;
+Console.WriteLine("Введите длину строки массива");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите высоту столбца массива");
+int n = Convert.ToInt32(Console.ReadLine());
+int[,] array = new int[m,n];
+const int CellWidth = 4; 
+Console.WriteLine("Введите значение искомого элемента");
+int Elementfaind = Convert.ToInt32(Console.ReadLine());
+int[] position = new int[2];
 
-InputMeaning(InputMean[0], InputMean[1], InputMean[2], InputMean[3]);
-
-
-void InputMeaning(double b1, double b2, double k1, double k2)
+void FillArray(int[,] collection, int[] position)
 {
-    x = (InputMean[2] - InputMean[0]) / (InputMean[1] - InputMean[3]);
-    y = InputMean[1] * (x) + InputMean[0];
-
-    double[] IntersectionPoint = { x, y };
-    for (int i = 0; i < IntersectionPoint.Length; i++)
+    for (int i = 0; i < m; i++)
     {
-        Console.WriteLine($"Точка пересечения ( {IntersectionPoint[0]} , {IntersectionPoint[1]} )");
+        for (int j = 0; j < n; j++)
+        {
+            collection[i,j] = new Random().Next(-10,11);            
+            if (collection[i,j] == Elementfaind) 
+            {
+                position[0] = i+1;
+                position[1] = j+1;
+                break;
+            }            
+        }    
+    }
+    if (position[0] == 0) Console.WriteLine("Такого числа в массиве нет");
+    else Console.WriteLine($"Позиция искомого элемента: Строка номер {position[0]}, столбец номер {position[1]}");
+}
+
+void PrintArray(int[,] collection)
+{
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+           Console.Write($"{collection[i,j], CellWidth}");          
+        }  
+        Console.WriteLine();  
     }
 }
 
-
-
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int b1 = Convert.ToInt32(Console.Read());
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int b2 = Convert.ToInt32(Console.Read());
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int k1 = Convert.ToInt32(Console.Read());
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int k2 = Convert.ToInt32(Console.Read());
-
-// double x = 0;
-// double y = 0;
-
-
-// void InputMeaning(int b1, int b2, int k1, int k2)
-// {
-//     x = (b2 - b1) / (k1 - k2);
-//     y = k1*(x) + b1;
-
-//     double[] IntersectionPoint = { x, y };
-//     for (int i = 0; i < IntersectionPoint.Length; i++)
-//     {
-//         Console.WriteLine(IntersectionPoint[i]); 
-//     }
-// }
-
-// InputMeaning(b1,b2,k1,k2);
+FillArray(array, position);
+PrintArray(array);

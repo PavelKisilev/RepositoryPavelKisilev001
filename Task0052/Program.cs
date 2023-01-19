@@ -1,55 +1,58 @@
-﻿// Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-// b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5
+﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-double[] InputMean = new double[4]; // Создаётся массив для заполнения входящими значениями двух прямых.
-{ Console.WriteLine($"Введите значение чисел b1, k1, b2 и k2 поочерёдно: "); }
-    for (int i = 0; i < InputMean.Length; i++)
-    {
-        InputMean[i] = Convert.ToDouble(Console.ReadLine());
-    }
-double x = 0;
-double y = 0;
+Console.WriteLine("Введите колличество строк массива");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите колличество столбцев массива");
+int n = Convert.ToInt32(Console.ReadLine());
+double[,] array = new double[m,n];
+const int CellWidth = 3;
+double arithmeticMeanVariable = 0;
+double temp = 0;
+FillArrya(array);
+PrintArrya(array);
+ArithmeticMean(array);
 
-InputMeaning(InputMean[0], InputMean[1], InputMean[2], InputMean[3]);
-
-
-void InputMeaning(double b1, double b2, double k1, double k2)
+void FillArrya (double[,] Collection)   // Создаётся массим с случайными числами, заданного размера.
 {
-    x = (InputMean[2] - InputMean[0]) / (InputMean[1] - InputMean[3]);
-    y = InputMean[1] * (x) + InputMean[0];
-
-    double[] IntersectionPoint = { x, y };
-    for (int i = 0; i < IntersectionPoint.Length; i++)
+    for (int i = 0; i < m; i++)
     {
-        Console.WriteLine($"Точка пересечения ( {IntersectionPoint[0]} , {IntersectionPoint[1]} )");
+        for (int j = 0; j < n; j++)
+        {
+            array[i,j] = new Random().Next(-10,10);
+        }
     }
 }
 
+void ArithmeticMean (double[,] Collection)  // Для каждого столбца высчитывается среднеарфметическое значение, и записывается в строку. 
+{Console.Write("Среднее арифметическое каждого столбца: "); // Запись заголовка.
+    for (int j = 0; j< n; j++)
+    {
+        for (int i = 0; i < m; i++) 
+        {
+        arithmeticMeanVariable = arithmeticMeanVariable + array[i,j];   // Расчет и запись в переменную. 
+        temp = i+1;     // Использование временной переменной для деления суммы чисел столбца на их колличество. 
+        }
 
+        Console.Write($"{Math.Round(arithmeticMeanVariable/temp,1), CellWidth}; ");  // Запись полученного значение в строку после заголовка.
+        arithmeticMeanVariable = 0;     // Обнуления суммы чисел столбца, для начало работы со следующий.
+    }
+    
+}
 
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int b1 = Convert.ToInt32(Console.Read());
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int b2 = Convert.ToInt32(Console.Read());
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int k1 = Convert.ToInt32(Console.Read());
-// Console.WriteLine($"Введите значение числа b1 : ");
-// int k2 = Convert.ToInt32(Console.Read());
-
-// double x = 0;
-// double y = 0;
-
-
-// void InputMeaning(int b1, int b2, int k1, int k2)
-// {
-//     x = (b2 - b1) / (k1 - k2);
-//     y = k1*(x) + b1;
-
-//     double[] IntersectionPoint = { x, y };
-//     for (int i = 0; i < IntersectionPoint.Length; i++)
-//     {
-//         Console.WriteLine(IntersectionPoint[i]); 
-//     }
-// }
-
-// InputMeaning(b1,b2,k1,k2);
+void PrintArrya (double[,] Collection)
+{
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            Console.Write($"{array[i,j], CellWidth} ");
+        }
+    Console.WriteLine();
+    } 
+    
+}
