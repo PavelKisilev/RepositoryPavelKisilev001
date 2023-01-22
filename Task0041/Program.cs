@@ -2,7 +2,7 @@
 // 0, 7, 8, -2, -2 -> 2
 // 1, -7, 567, 89, 223-> 3
 
-Console.WriteLine("Начинайте вводить числа, по окончанию ввода введите End"); 
+Console.WriteLine("Начинайте вводить числа, по окончанию ввода введите End");                                                                                                                                          
 string element = string.Empty;
 string end = "End";
 int i = 0;
