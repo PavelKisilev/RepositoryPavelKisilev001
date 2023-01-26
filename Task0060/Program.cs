@@ -4,18 +4,17 @@
 // 34(1,0,0) 41(1,1,0)
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
-
-Console.WriteLine("Введите измерении массива i");
+Console.Write("Введите измерении массива i ");
 int i = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите измерении массива k");
+Console.Write("Введите измерении массива k ");
 int k = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите измерении массива j");
+Console.Write("Введите измерении массива j ");
 int j = Convert.ToInt32(Console.ReadLine());
 const int CellWidth = 3;
 int[,,] Array = new int[i, k, j];
-
 FillArray(Array);
 PrintArray(Array);
+
 
 void FillArray(int[,,] Collection)
 {
@@ -52,7 +51,6 @@ bool Check(int[,,] Collection, int value)
     }
     return false;
 }
-
 
 void PrintArray(int[,,] Collection)
 {

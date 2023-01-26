@@ -4,3 +4,58 @@
 // 12 13 14 05
 // 11 16 15 06
 // 10 09 08 07
+
+Console.WriteLine("Введите размера массива");
+int a = Convert.ToInt32(Console.ReadLine());
+int b = a;
+const int CellWidth = 3;
+int[,] Array = new int[a, b];
+FillArray(Array);
+PrintArray(Array);  // Для проверки, создания и заполнения массива.
+int start = 1;
+int i = 0;          // Текущее положение, строка.
+int j = -1;         // Текущее положение, колонка (старт с "воображаемой" колоник слева).
+int row = 0;        // Движение по столбцу, может двигаться вверх (+1), вниз (-1), не двигаться по столбцам (0).
+int column = 1;     // Движение по строке, может двигаться в право (+1), в лево (-1), не двигаться по строкам (0).
+
+
+while (a <= a * a)
+
+    if (0 <= i + row & i + row < Array.GetLength(1) & 0 <= j + column & j + column < Array.GetLength(0) & Array[i + row, j + column] == 0) // проверка следующей ячейки, для заполнения. 
+    {
+        i += row;
+        j += column;
+        Array[i, j] = start;
+        start += 1;
+    }
+    else if (column == 1) { row = 1; column = 0; }
+         else if (row == 0) { row = 0; column = -1; }
+              else if (column == -1) { row = -1; column = 0; }
+                   else if (row == -1) { row = 0; column = 1; }
+
+PrintArray(Array);
+
+
+
+
+void PrintArray(int[,] Collection)
+{
+    for (int i = 0; i < Collection.GetLength(0); i++)
+    {
+        for (int j = 0; j < Collection.GetLength(1); j++)
+        {
+            Console.Write($"{Collection[i, j],CellWidth}");
+        }
+        Console.WriteLine();
+    }
+}
+void FillArray(int[,] Collection)
+{
+    for (int i = 0; i < Collection.GetLength(0); i++)
+    {
+        for (int j = 0; j < Collection.GetLength(1); j++)
+        {
+            Collection[i, j] = 0;
+        }
+    }
+}
