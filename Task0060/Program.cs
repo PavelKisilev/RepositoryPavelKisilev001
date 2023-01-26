@@ -4,3 +4,71 @@
 // 34(1,0,0) 41(1,1,0)
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
+
+
+Console.WriteLine("Введите измерении массива i");
+int i = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите измерении массива k");
+int k = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите измерении массива j");
+int j = Convert.ToInt32(Console.ReadLine());
+const int CellWidth = 3;
+int[,,] Array = new int[i, k, j];
+FillArray(Array);
+PrintArray(Array);
+
+
+void FillArray(int[,,] Collection)
+{
+    for (int i = 0; i < Collection.GetLength(0); i++)
+    {
+        for (int k = 0; k < Collection.GetLength(1); k++)
+        {
+            for (int j = 0; j < Collection.GetLength(2); j++)
+            {
+                int temp = 0;
+                while (true)
+                {
+                    temp = new Random().Next(10, 19);
+                    if (Check(Collection, temp)) break;
+                    
+                }
+                Collection[i, k, j] = temp;
+            }
+        }
+    }
+}
+
+bool Check(int[,,] Collection, int value)
+{
+    for (int i = 0; i < Collection.GetLength(0); i++)
+    {
+        for (int k = 0; k < Collection.GetLength(1); k++)
+        {
+            for (int j= 0; j < Collection.GetLength(2); j++)
+            {
+                if (value == Collection[i, k, j]) return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+void PrintArray(int[,,] Collection)
+{
+    for (int i = 0; i < Collection.GetLength(0); i++)
+    {
+        for (int k = 0; k < Collection.GetLength(1); k++)
+        {
+            for (int j = 0; j < Collection.GetLength(2); j++)
+            {
+                Console.Write($"{Collection[i, k, j],CellWidth}");
+
+                Console.Write($"({i}, {k}, {j}) ");
+            }
+        }
+        Console.WriteLine();
+    }
+
+}
