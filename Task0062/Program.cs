@@ -11,31 +11,28 @@ int b = a;
 const int CellWidth = 3;
 int[,] Array = new int[a, b];
 FillArray(Array);
-PrintArray(Array);  // Для проверки, создания и заполнения массива.
+// PrintArray(Array);  // Для проверки, создания и заполнения массива. Удалить по окончанию разработки.
 int start = 1;
-int i = 0;          // Текущее положение, строка.
-int j = -1;         // Текущее положение, колонка (старт с "воображаемой" колоник слева).
+int i = 0;          // Текущее положение, строк.
+int j = -1;         // Текущее положение, колонки. (старт с "воображаемой" колонки слева).
 int row = 0;        // Движение по столбцу, может двигаться вверх (+1), вниз (-1), не двигаться по столбцам (0).
 int column = 1;     // Движение по строке, может двигаться в право (+1), в лево (-1), не двигаться по строкам (0).
+while (start <= a * a)
 
-
-while (a <= a * a)
-
-    if (0 <= i + row & i + row < Array.GetLength(1) & 0 <= j + column & j + column < Array.GetLength(0) & Array[i + row, j + column] == 0) // проверка следующей ячейки, для заполнения. 
+    if (0 <= i + row && i + row < Array.GetLength(1) && 0 <= j + column && j + column < Array.GetLength(0) && Array[i + row, j + column] == 0) // проверка следующей ячейки, для заполнения. 
     {
         i += row;
         j += column;
         Array[i, j] = start;
         start += 1;
     }
+
     else if (column == 1) { row = 1; column = 0; }
-         else if (row == 0) { row = 0; column = -1; }
+         else if (row == 1) { row = 0; column = -1; }
               else if (column == -1) { row = -1; column = 0; }
                    else if (row == -1) { row = 0; column = 1; }
 
 PrintArray(Array);
-
-
 
 
 void PrintArray(int[,] Collection)
