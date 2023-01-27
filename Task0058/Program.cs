@@ -34,6 +34,7 @@ Console.WriteLine();
 Multiplication(MatrixOne,MatrixTwo);
 PrintArray(MatrixThree);
 
+
 void FillArray(int[,] Collection)
 {
     for (int i = 0; i < Collection.GetLength(0); i++)
