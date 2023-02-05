@@ -16,11 +16,12 @@
 // Работы пыполнять с использованием логики проектирования приложений "Сверху-вниз".
 
 
-
-String[] Mass = new String[4];
+Console.WriteLine("Введите размер массива");
+int sizeArray = Convert.ToInt32(Console.ReadLine());
+String[] Mass = new String[sizeArray];
 InputSymbol(Mass);
-//Change(Mass); // снижение колличества символов в массиве до 3-х и менее.
-PrintArray(Mass); // печать символов массива.
+Change(Mass); // снижение колличества символов в массиве до 3-х и менее.
+// PrintArray(Mass); // печать символов массива.
 
 
 void PrintArray(string[] Array)
@@ -50,3 +51,25 @@ void InputSymbol(string[] Array)
 }
 
 
+void Change(string[] Array)
+{
+    int sumSymbol = 0;
+    
+    for (int i = 0; i < Array.Length; i++)
+    {
+        sumSymbol = Array[i].Length + sumSymbol;
+        Console.WriteLine($"{sumSymbol}");
+    }
+
+    while (sumSymbol > 3)
+    {
+        int nuberElement = new Random().Next(0, sizeArray);
+        Array[nuberElement] = "";
+        sizeArray--;
+        for (int i = 0; i < Array.Length; i++)
+        {
+            sumSymbol = Array[i].Length + sumSymbol;
+            Console.WriteLine($"{sumSymbol}");
+        }
+    }
+}
