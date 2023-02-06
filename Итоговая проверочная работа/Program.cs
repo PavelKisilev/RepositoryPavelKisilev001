@@ -61,6 +61,7 @@ void Change(string[] Array)
         int index = new Random().Next(0, sizeArray++);
         int deleted = Array[index].Length;
         Array[index] = "";
+        sizeArray--;
         sumSymbol = sumSymbol - deleted;
     }
 }
