@@ -21,7 +21,7 @@ int sizeArray = Convert.ToInt32(Console.ReadLine());
 String[] Mass = new String[sizeArray];
 InputSymbol(Mass);
 Change(Mass); // снижение колличества символов в массиве до 3-х и менее.
-// PrintArray(Mass); // печать символов массива.
+PrintArray(Mass); // печать символов массива.
 
 
 void PrintArray(string[] Array)
@@ -32,7 +32,6 @@ void PrintArray(string[] Array)
         Console.Write($"{symbol + Array[i]}, ");
     }
 }
-
 
 void InputSymbol(string[] Array)
 {
@@ -45,11 +44,8 @@ void InputSymbol(string[] Array)
             Console.WriteLine("Введите дополнительный символ");
             Array[i] = new(Array[i] + Console.ReadLine());
         }
-
     }
-
 }
-
 
 void Change(string[] Array)
 {
@@ -58,18 +54,13 @@ void Change(string[] Array)
     for (int i = 0; i < Array.Length; i++)
     {
         sumSymbol = Array[i].Length + sumSymbol;
-        Console.WriteLine($"{sumSymbol}");
     }
 
     while (sumSymbol > 3)
-    {
-        int nuberElement = new Random().Next(0, sizeArray);
-        Array[nuberElement] = "";
-        sizeArray--;
-        for (int i = 0; i < Array.Length; i++)
-        {
-            sumSymbol = Array[i].Length + sumSymbol;
-            Console.WriteLine($"{sumSymbol}");
-        }
+    {        
+        int index = new Random().Next(0, sizeArray++);
+        int deleted = Array[index].Length;
+        Array[index] = "";
+        sumSymbol = sumSymbol - deleted;
     }
 }
